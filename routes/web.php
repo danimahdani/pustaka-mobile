@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/layout', function () {
-    return view('components.templates.layout');
+    return view('testcomponent.datatables');
 });
 
 Route::get('/', function () {

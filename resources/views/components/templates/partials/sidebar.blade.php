@@ -1,22 +1,28 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <a href="index.html">Pustaka Mobile</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="index.html">PM</a>
         </div>
         <ul class="sidebar-menu">
-            <li class="menu-header">Starter</li>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span>Layout</span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
-                </ul>
-            </li>
+            <li class="menu-header">Dashboard Admin</li>
+            <li class="{{ Request::is('dashboard') ? 'active' : '' }}"><a class="nav-link" href="/dashboard"><i
+                        class="fas fa-home"></i>
+                    <span>Dashboard</span></a></li>
+            <li class="{{ Request::is('dashboard/categories*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('categories.index') }}"><i class="fas fa-bookmark"></i>
+                    <span>Categories</span></a></li>
+            <li class="{{ Request::is('dashboard/books*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('books.index') }}"><i class="fas fa-book"></i>
+                    <span>Books</span></a></li>
+            <li class="{{ Request::is('dashboard/members*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('members.index') }}"><i class="fas fa-id-card"></i>
+                    <span>Members</span></a></li>
+            <li class="{{ Request::is('dashboard/borrowed-book*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('borrowed-book.index') }}"><i class="fas fa-id-card"></i>
+                    <span>List Borrowed Book</span></a></li>
         </ul>
 
     </aside>

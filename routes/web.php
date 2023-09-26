@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\BorrowedBookController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/layout', function () {
-    return view('testcomponent.datatables');
-});
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/layout', function () {
+//     return view('testcomponent.datatables');
+// });
+
+Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('/', fn () => view('dashboard.index'));
+    Route::resource('members', UserController::class)->except('show');
+    Route::resource('categories', CategoryController::class)->except('show');
+    Route::resource('books', BookController::class);
+    Route::resource('borrowed-book', BorrowedBookController::class);
 });
